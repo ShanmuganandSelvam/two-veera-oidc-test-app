@@ -26,7 +26,7 @@ COPY . .
 # Accept build argument for Vite base path
 ARG VITE_BASE_PATH=/
 
-ENV VITE_BASE_PATH=$VITE_BASE_PATH
+ENV VITE_BASE_PATH=${VITE_BASE_PATH}
 
 # Build the application
 RUN npm run build
