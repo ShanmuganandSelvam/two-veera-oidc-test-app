@@ -45,9 +45,10 @@ COPY --from=builder /app/dist /usr/share/nginx/html
 # Copy custom nginx configuration for React SPA
 COPY --chown=appuser:appuser nginx.conf /etc/nginx/nginx.conf
 
-# Create nginx cache and log directories with proper permissions
-RUN mkdir -p /var/cache/nginx /var/log/nginx && \
-    chown -R appuser:appuser /var/cache/nginx /var/log/nginx /etc/nginx /usr/share/nginx/html
+# Create nginx cache, log, and runtime directories with proper permissions
+RUN mkdir -p /var/cache/nginx /var/log/nginx /var/lib/nginx /tmp && \
+    chown -R appuser:appuser /var/cache/nginx /var/log/nginx /var/lib/nginx /etc/nginx /usr/share/nginx/html /tmp && \
+    chmod 755 /tmp
 
 # Switch to non-root user
 USER appuser
